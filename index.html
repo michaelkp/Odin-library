@@ -19,6 +19,88 @@
         </main>
         <aside class="sidebar">
             <button type="submit">New Book</button>
+            <dialog id="newBook">
+                <form method="dialog">
+                    <section>
+                        <fieldset>
+                            <legend>
+                                Add a new book to your library!
+                            </legend>
+                            <ul>
+                                <li>
+                                    <label for="title">
+                                        Title
+                                        <span aria-label="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="title" 
+                                        id="title"
+                                        title="Please enter the title of your book."
+                                        placeholder="Title"
+                                        autocapitalize="words"
+                                        autofocus
+                                        required
+                                        >
+                                </li>
+                                <li>
+                                    <label for="author">
+                                        Author
+                                        <span aria-label="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        name="author" 
+                                        id="author"
+                                        title="Please enter the author of your book."
+                                        placeholder="Author"
+                                        autocapitalize="words"
+                                        required
+                                        >
+                                </li>
+                                <li>
+                                    <label for="pages">
+                                        Pages
+                                        <span aria-label="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="number" 
+                                        name="pages" 
+                                        id="pages"
+                                        title="Please enter the number of pages in your book."
+                                        placeholder="No. of Pages"
+                                        required
+                                        >
+                                </li>
+                                <li>
+                                    <label for="read">
+                                        Read
+                                        <span aria-label="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="radio" 
+                                        name="read" 
+                                        id="has-read"
+                                        value="read"
+                                        >
+                                    <label for="not-read">
+                                        Not Read
+                                    </label>
+                                    <input 
+                                        type="radio" 
+                                        name="read" 
+                                        id="not-read"
+                                        value="not-read"
+                                        checked
+                                        >
+                                </li>
+                            </ul>
+                        </fieldset>
+                    </section>
+                    <pre id="log"></pre>
+                    
+                </form>
+            </dialog>
         </aside>
         <footer class="footer">
             <div class="footer-info">
