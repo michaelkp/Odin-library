@@ -18,8 +18,8 @@
             <h2>Titles</h2>
         </main>
         <aside class="sidebar">
-            <button type="submit">New Book</button>
-            <dialog id="newBook">
+            <button type="submit" id="newBookBtn">New Book</button>
+            <dialog id="newBookDialog">
                 <form method="dialog">
                     <section>
                         <fieldset>
@@ -100,6 +100,11 @@
                     <pre id="log"></pre>
                     
                 </form>
+
+                <section class="btns">
+                    <button type="reset" id="cancel">Cancel</button>
+                    <button type="submit" id="save">Save</button>
+                </section>
             </dialog>
         </aside>
         <footer class="footer">
