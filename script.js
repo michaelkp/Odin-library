@@ -1,6 +1,25 @@
 'use strict'
 
-let myLibrary = [];
+let myLibrary = [
+    {
+        title: 'hobbit',
+        author: 'tolkien',
+        pages: 231,
+        hasRead: 'read'
+    },
+    {
+        title: 'frogger',
+        author: 'sega',
+        pages: 23,
+        hasRead: 'read'
+    },
+    {
+        title: 'sandman',
+        author: 'gaiman',
+        pages: 1003,
+        notRead: 'read'
+    }
+];
 
 // button to open dialog box with form
 const newBookBtn = document.getElementById('newBookBtn')
@@ -74,4 +93,31 @@ function addBookToLibrary(newBook) {
 
     myLibrary.push(newBook)
     console.log(myLibrary + ' --push myLibrary ')
+
+    // add card with book data to document
+    makeCard(myLibrary)
 }
+
+function makeCard(myLibrary) {
+
+    const newestBook = myLibrary[myLibrary.length - 1]
+    console.log(newestBook)
+    const cardContainer = document.querySelector('.card-container')
+    const card = document.createElement('div')
+        card.className = 'card'
+    const cardHeader = document.createElement('header')
+    const cardList = document.createElement('ul')
+    const cardLiAuthor = document.createElement('li')
+    const cardLiPages = document.createElement('li')
+
+        card.appendChild(cardHeader)
+            cardHeader.textContent = newestBook.title
+            console.log(newestBook.title)
+        card.appendChild(cardList)
+        cardList.appendChild(cardLiAuthor)
+            cardLiAuthor.textContent = newestBook.author
+        cardList.appendChild(cardLiPages)
+            cardLiPages.textContent = newestBook.pages
+        cardContainer.appendChild(card)
+}
+
