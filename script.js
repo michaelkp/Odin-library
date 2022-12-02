@@ -93,14 +93,25 @@ function addBookToLibrary(newBook) {
 
     myLibrary.push(newBook)
     console.log(myLibrary + ' --push myLibrary ')
-
-    // add card with book data to document
-    makeCard(myLibrary)
+    makeCard(newBook)
+    // loop through myLibrary and display objects in cards
+    // for(let newBook of myLibrary) {
+    //     console.log('test++')
+    //     makeCard(myLibrary)
+    //     // add card with book data to document
+    // }
 }
 
+function displayLibraryOnLaunch(myLibrary) {
+    myLibrary.forEach(newBook => {
+        makeCard(newBook)
+        console.log('test')
+    });
+}
+displayLibraryOnLaunch(myLibrary)
 function makeCard(myLibrary) {
 
-    const newestBook = myLibrary[myLibrary.length - 1]
+    const newestBook = myLibrary
     console.log(newestBook)
     const cardContainer = document.querySelector('.card-container')
     const card = document.createElement('div')
