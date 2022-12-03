@@ -1,24 +1,27 @@
 'use strict'
 
 let myLibrary = [
-    {
-        title: 'hobbit',
-        author: 'tolkien',
-        pages: 231,
-        hasRead: 'read'
-    },
-    {
-        title: 'frogger',
-        author: 'sega',
-        pages: 23,
-        hasRead: 'read'
-    },
-    {
-        title: 'sandman',
-        author: 'gaiman',
-        pages: 1003,
-        notRead: 'read'
-    }
+    // {
+    //     bookId: '001',
+    //     title: 'hobbit',
+    //     author: 'tolkien',
+    //     pages: 231,
+    //     hasRead: 'read'
+    // },
+    // {   
+    //     bookId: '002',
+    //     title: 'frogger',
+    //     author: 'sega',
+    //     pages: 23,
+    //     hasRead: 'read'
+    // },
+    // {
+    //     bookId: '003',
+    //     title: 'sandman',
+    //     author: 'gaiman',
+    //     pages: 1003,
+    //     notRead: 'read'
+    // }
 ];
 
 // button to open dialog box with form
@@ -59,67 +62,78 @@ function userInput(returnValue) {
         return
     } else if(returnValue === 'Save') {
         
-        console.log(title.value + ' --TITLE'
-                      + author.value +  ' --AUTHOR'
-                      + pages.value + ' --PAGES'
-                      + hasRead.value + ' --READ')
+        const newBook = new Book(
+                0,
+                title.value,
+                author.value,
+                pages.value,
+                hasRead.value,
+                
 
-        const newBook = new Book
-            newBook.title = title.value
-            newBook.author = author.value
-            newBook.pages = pages.value
-            newBook.hasRead = hasRead.value
-            
+            )
+            // newBook.description = description.value
+            console.log(newBook instanceof Book);
         addBookToLibrary(newBook)
     }
 }
 // end of dialog box
 
-function Book(title, author, pages, read) {
+function Book(bookId, title, author, pages, read, description) {
+    this.bookId = () => {
+        return bookId++
+    }
+    console.log(this.bookId() + ' -- BOOKID')
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
+    // this.description = description
     this.info = () => {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`
     }
 }
 
-// const theHobbit = new Book('Hobbit', 'Tolkien', 250, 'not read yet')
-// console.log(theHobbit.info())
+// sample books
+const theHobbit = new Book(1, 'The Hobbit', 'Tolkien', 250,)
+const theSandman = new Book(2, 'The Sandman', 'Niel Gaiman', 1200)
+const hamlet = new Book(3, 'William Shakespeare', 150)
+
+addBookToLibrary(theHobbit)
+addBookToLibrary(theSandman)
+addBookToLibrary(hamlet)
 
 function addBookToLibrary(newBook) {
     console.log(newBook.title + ' --title in addBook')
-
+console.log(newBook.info());
     myLibrary.push(newBook)
     console.log(myLibrary + ' --push myLibrary ')
     makeCard(newBook)
-    // loop through myLibrary and display objects in cards
-    // for(let newBook of myLibrary) {
-    //     console.log('test++')
-    //     makeCard(myLibrary)
-    //     // add card with book data to document
-    // }
 }
 
-function displayLibraryOnLaunch(myLibrary) {
-    myLibrary.forEach(newBook => {
-        makeCard(newBook)
-        console.log('test')
-    });
-}
-displayLibraryOnLaunch(myLibrary)
+
 function makeCard(myLibrary) {
-
+    // display new book 
     const newestBook = myLibrary
     console.log(newestBook)
     const cardContainer = document.querySelector('.card-container')
     const card = document.createElement('div')
         card.className = 'card'
+        card.id = 0
+
+        // let cardArray = []
+        // cardArray.push(card)
+        // let cardId = card.dataset.cardId
+        // cardArray.forEach(cardId => {
+        //     cardId++
+        //     console.log(cardArray + ' --card array');
+        //     console.log(cardId + ' -- id test');
+        //     console.log(card.dataset.cardId );
+        // })
     const cardHeader = document.createElement('header')
     const cardList = document.createElement('ul')
     const cardLiAuthor = document.createElement('li')
     const cardLiPages = document.createElement('li')
+    console.log(card.id + ' -- cardId')
 
         card.appendChild(cardHeader)
             cardHeader.textContent = newestBook.title
@@ -130,5 +144,46 @@ function makeCard(myLibrary) {
         cardList.appendChild(cardLiPages)
             cardLiPages.textContent = newestBook.pages
         cardContainer.appendChild(card)
+        // const addCardIdCounter = (card) => {
+        //     const cardCounter = document.getElementsByClassName('card')
+        //     console.log(cardCounter + ' -- card counter');
+        //     // let cardArray = []
+        //         // cardArray.push(cardCounter)
+        //         // console.log(cardArray[0] + ' -- card array');
+        //         let cardId = card.id
+        //         console.log(cardId + ' --id');
+        //         for(cardId in cardCounter) {
+        //             cardId++
+        //             console.log(cardId + ' --card id');
+        //         }
+        //         // cardCounter.forEach(cardId => {
+        //         //     cardId + 1
+        //         //     // console.log(cardArray + ' --card array');
+        //         //     console.log(cardId + ' -- id test');
+        //         //     // console.log(card.dataset.cardId );
+        //         // })
+        //         return cardId
+        // }  
+        // addCardIdCounter(card)      
+    return card
 }
 
+// function addCardIdCounter(card) {
+//     const cardCounter = document.getElementsByClassName('card')
+//     console.log(cardCounter + ' -- card counter');
+//     // let cardArray = []
+//         // cardArray.push(cardCounter)
+//         // console.log(cardArray[0] + ' -- card array');
+//         let cardId = card.id
+//         console.log(cardId + ' --id');
+//         for(cardId in cardCounter) {
+//             cardId++
+//             console.log(cardId + ' --card id');
+//         }
+//         // cardCounter.forEach(cardId => {
+//         //     cardId + 1
+//         //     // console.log(cardArray + ' --card array');
+//         //     console.log(cardId + ' -- id test');
+//         //     // console.log(card.dataset.cardId );
+//         // })
+// }
