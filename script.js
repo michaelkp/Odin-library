@@ -32,7 +32,8 @@ const saveBtn = document.getElementById('saveBtn')
         openCheck(dialog)
         userInput(dialog.returnValue)
         removeSampleBooks(myLibrary)
-        checkForSampleBooks(myLibrary)
+        let cards = document.getElementsByClassName('card')
+        console.log('GGGG -- ' + cards.length);
     })
 
 function openCheck(dialog) {
@@ -40,12 +41,6 @@ function openCheck(dialog) {
         console.log('Dialog open!')
     } else {
         console.log('Dialog closed.')
-    }
-}
-
-function checkForSampleBooks(myLibrary) {
-    if(myLibrary.length === 0) {
-        return
     }
 }
 
@@ -71,10 +66,10 @@ function userInput(returnValue) {
 
 // change the example cards id to "sample"
 const sampleCardId = (newBook) => {
+
     if(newBook.cardId === undefined) {
         newBook.cardId = 'sample'
     }
-    console.log(newBook.cardId + ' --newbook id');
 } 
 
 function Book(title, author, pages, cardId, tag) {
@@ -113,12 +108,12 @@ function addBookToLibrary(newBook) {
 
 function makeCard(myLibrary) {
     sampleCardId(myLibrary)
+
     // display new book 
     const newestBook = myLibrary
     const cardContainer = document.querySelector('.card-container')
     const card = document.createElement('div')
         card.className = 'card'
-        // cardArray.push(card)
         
     const cardHeader = document.createElement('header')
     const cardList = document.createElement('ul')
@@ -144,11 +139,12 @@ function makeCard(myLibrary) {
         deleteCardBtn(card, cardContainer)
         
         if(Book.tag !== 'sample') {
-            console.log('MMMMM -- ' + Book.tag)
             return
         } else {
             removeSampleBooks(myLibrary)
         }
+
+
 }
 
 function deleteCardBtn(card, cardContainer) {
@@ -162,51 +158,33 @@ function deleteCardBtn(card, cardContainer) {
 }     
 
 function removeSampleBooks(myLibrary) {
-    // let filteredLibrary = myLibrary.filter(Book => Book.tag === 'sample').splice(Book)
-    // console.log('DDDD -- ' + filteredLibrary.length);
-    // console.log('TAG -- ' + Book.tag);
-    console.log(' book tag -- ' + Book.tag);
+ 
     let tag = Book.tag
-    console.log('TAG -- ' + tag);
-    console.log(myLibrary.length);
-    
+
     myLibrary.forEach(Book => {
-        console.log('kkkmkmkkm');
         if(myLibrary.length === 0) {
             return
-        }
-        if(Book.tag === 'sample'){
-            console.log('kpkpkpl');
+        } else if(Book.tag === 'sample'){
             removeSampleCardDiv(myLibrary)
-
             myLibrary.splice(0, 3)
-            console.log('jffba');
-            console.log(myLibrary.length);
         }
     });
 }
 
 function removeSampleCardDiv(myLibrary) {
-    console.log('HHHHH')
-    console.log(Book.tag);
-    const removedCards = document.getElementsByClassName('.card')
-    console.log(removedCards.length);
-    // if(Book.tag === 'sample')  {
-    // let tempContainer = document.querySelector('.card-container')
-    // let tempCard = document.querySelector('.card')
-    // let removeCardDiv = tempContainer.removeChild(tempCard)}
-    console.log(myLibrary.length);
+ 
+    const removeSampleCards = document.getElementsByClassName('.card')
+    console.log(removeSampleCards.length);
+    console.log(removeSampleCards.cardList);
+    if (removeSampleCards.length === 0) {
+        return
+    }
     myLibrary.forEach(Book => {
-        console.log('kkkmkmkkm');
-        if(removedCards.length === 0) {
-            return
-        } else if(Book.tag === 'sample'){
-            let tempContainer = document.querySelector('.card-container')
-            let tempCard = document.querySelector('.card')
-            let removeCardDiv = tempContainer.removeChild(tempCard)
+        if(Book.tag === 'sample') { 
+            console.log(removeSampleCards.length);
+            let sampleContainer = document.querySelector('.card-container')
+            let sampleCard = document.querySelector('.card')
+            let removeSampleCardDiv = sampleContainer.removeChild(sampleCard)
         }
-
-    })
-    
+    }) 
 }
-
