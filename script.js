@@ -32,6 +32,7 @@ const saveBtn = document.getElementById('saveBtn')
         removeSampleCards(myLibrary)
 
     })
+
 function openCheck(dialog) {
     if(dialog.open) {
         console.log('Dialog open!')
@@ -39,6 +40,7 @@ function openCheck(dialog) {
         console.log('Dialog closed.')
     }
 }
+
 let cardId = 1
 function userInput(returnValue) {
     if(!returnValue || returnValue === 'Cancel') {
@@ -102,10 +104,6 @@ function addBookToLibrary(newBook) {
     
 }
 
-// const incrementCardIdBy1 = (card) => {
-//     cardId++
-// }
-
 function makeCard(myLibrary) {
     sampleCardId(myLibrary)
     // display new book 
@@ -134,13 +132,29 @@ function makeCard(myLibrary) {
         cardList.appendChild(cardLiPages)
             cardLiPages.textContent = newestBook.pages
         cardContainer.appendChild(card)
-
+        deleteCardBtn(card)
         if(Book.tag !== 'sample') {
             console.log('MMMMM -- ' + Book.tag)
             return
         } else {
             removeSampleCards(myLibrary)
         }
+}
+
+function deleteCardBtn(card) {
+    console.log('ijpokpokokpk');
+    const deleteCardBtn = document.createElement('button')
+        card.appendChild(deleteCardBtn)
+
+        deleteCardBtn.addEventListener('pointerup', () => {
+            removeCardDiv()
+        })
+}
+
+function removeCardDiv() {
+    let tempContainer = document.querySelector('.card-container')
+    let tempCard = document.querySelector('.card')
+    let removeCardDiv = tempContainer.removeChild(tempCard)
 }
 
 function removeSampleCards(myLibrary) {
