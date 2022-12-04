@@ -1,6 +1,7 @@
 'use strict'
 
-let myLibrary = []
+let myLibrary = [];
+// let cardArray = [];
 
 // button to open dialog box with form
 const newBookBtn = document.getElementById('newBookBtn')
@@ -28,6 +29,8 @@ const saveBtn = document.getElementById('saveBtn')
         dialog.close('Save')
         openCheck(dialog)
         userInput(dialog.returnValue)
+        removeSampleCards(myLibrary)
+
     })
 function openCheck(dialog) {
     if(dialog.open) {
@@ -43,11 +46,11 @@ function userInput(returnValue) {
     } else if(returnValue === 'Save') {
         // let bookId = 0
         const newBook = new Book(
-                cardId++,
                 title.value,
                 author.value,
                 pages.value,
-                hasRead.value,
+                cardId++,
+                'newBook',
             )
             // newBook.description = description.value
             console.log(newBook instanceof Book);
@@ -56,29 +59,33 @@ function userInput(returnValue) {
 }
 // end of dialog box
 
+// change the example cards id to "sample"
+const sampleCardId = (newBook) => {
+    if(newBook.cardId === undefined) {
+        newBook.cardId = 'sample'
+    }
+    console.log(newBook.cardId + ' --newbook id');
+} 
 
-
-function Book(cardId,title, author, pages, read) {
-    this.cardId = cardId
+function Book(title, author, pages, cardId, tag) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = read
+    this.cardId = cardId
+    this.tag = tag
     // this.description = description
     this.info = () => {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}. ID = ${cardId}`
+        return `${this.title} by ${this.author}, ${this.pages} pages.  ID = ${cardId} tag ${tag}`
     }
+    // sampleCardId(newBook)
+
 }
 
-// Book.prototype.cardId = function() {
-//     this.cardId = 0
-//     console.log('cardid test');
-// }
-
 // sample books
-const theHobbit = new Book(1,'The Hobbit', 'J.R.R. Tolkien', 250,)
-const theSandman = new Book(2,'The Sandman', 'Niel Gaiman', 1200)
-const hamlet = new Book(3, 'Hamlet', 'William Shakespeare', 150)
+const theHobbit = new Book( 'The Hobbit', 'J.R.R. Tolkien', 250, cardId, 'sample')
+const theSandman = new Book('The Sandman', 'Niel Gaiman', 1200, cardId, 'sample')
+const hamlet = new Book('Hamlet', 'William Shakespeare', 150, cardId, 'sample')
+
 
 addBookToLibrary(theHobbit)
 addBookToLibrary(theSandman)
@@ -88,33 +95,35 @@ addBookToLibrary(hamlet)
 
 function addBookToLibrary(newBook) {
     console.log(newBook.info());
-    // console.log(newBook.id + " --ID");
     myLibrary.push(newBook)
-    // let id = newBook[id]
-    // for(newBook in myLibrary) {
-    //     newBook[id++]
-    //     console.log(id + ' --ID test');
-    // }
     makeCard(newBook)
+    // console.log(cardArray);
+    // cardArray.push(card)
+    
 }
 
 // const incrementCardIdBy1 = (card) => {
 //     cardId++
 // }
+
 function makeCard(myLibrary) {
+    sampleCardId(myLibrary)
     // display new book 
     const newestBook = myLibrary
     const cardContainer = document.querySelector('.card-container')
     const card = document.createElement('div')
         card.className = 'card'
-        // card.id = 0
-        // let cardId = card.id
-        // incrementCardIdBy1(cardId)
+        // cardArray.push(card)
+        
     const cardHeader = document.createElement('header')
     const cardList = document.createElement('ul')
     const cardLiAuthor = document.createElement('li')
     const cardLiPages = document.createElement('li')
 
+    let cardIdNumber = document.createElement('data-card-id')
+        cardIdNumber = newestBook.cardId
+        console.log(cardIdNumber + ' --cardid number');
+        console.log('NEW TAG TEST -- ' + newestBook.tag);
         card.appendChild(cardHeader)
             cardHeader.textContent = newestBook.title
             console.log(newestBook.title)
@@ -125,14 +134,54 @@ function makeCard(myLibrary) {
         cardList.appendChild(cardLiPages)
             cardLiPages.textContent = newestBook.pages
         cardContainer.appendChild(card)
-        // console.log(cardId + ' --CARDID test'); 
-    return card
+
+        if(Book.tag !== 'sample') {
+            console.log('MMMMM -- ' + Book.tag)
+            return
+        } else {
+            removeSampleCards(myLibrary)
+        }
 }
 
-// function incrementCardIdBy1(cardId) {
-    
-//     cardId++
-//     console.log(cardId + ' --CardId TEST');
-// }
+function removeSampleCards(myLibrary) {
+    // let filteredLibrary = myLibrary.filter(Book => Book.tag === 'sample').splice(Book)
+    // console.log('DDDD -- ' + filteredLibrary.length);
+    // console.log('TAG -- ' + Book.tag);
+    console.log(' book tag -- ' + Book.tag);
+    let tag = Book.tag
+    console.log('TAG -- ' + tag);
+    console.log(myLibrary.length);
 
+    myLibrary.forEach(Book => {
+        console.log('kkkmkmkkm');
+        if(Book.tag === 'sample'){
+            console.log('kpkpkpl');
+            removeSampleCardDiv(myLibrary)
+
+            myLibrary.splice(0, 3)
+            console.log('jffba');
+            console.log(myLibrary.length);
+        }
+    });
+}
+
+function removeSampleCardDiv(myLibrary) {
+    console.log('HHHHH')
+    console.log(Book.tag);
+    // if(Book.tag === 'sample')  {
+    // let tempContainer = document.querySelector('.card-container')
+    // let tempCard = document.querySelector('.card')
+    // let removeCardDiv = tempContainer.removeChild(tempCard)}
+
+    myLibrary.forEach(Book => {
+        console.log('kkkmkmkkm');
+        if(Book.tag === 'sample'){
+            let tempContainer = document.querySelector('.card-container')
+            let tempCard = document.querySelector('.card')
+            let removeCardDiv = tempContainer.removeChild(tempCard)
+        }
+
+    })
+    
+}
 
