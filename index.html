@@ -16,11 +16,14 @@
         </header>
         <main class="main">
             <h2>Titles</h2>
+            <div class="card-container">
+                
+            </div>
         </main>
         <aside class="sidebar">
             <button type="submit" id="newBookBtn">New Book</button>
             <dialog id="newBookDialog">
-                <form method="dialog">
+                <form method="dialog" id="newBook">
                     <section>
                         <fieldset>
                             <legend>
@@ -39,6 +42,7 @@
                                         title="Please enter the title of your book."
                                         placeholder="Title"
                                         autocapitalize="words"
+                                        autocomplete="off"
                                         autofocus
                                         required
                                         >
@@ -55,6 +59,7 @@
                                         title="Please enter the author of your book."
                                         placeholder="Author"
                                         autocapitalize="words"
+                                        autocomplete="off"
                                         required
                                         >
                                 </li>
@@ -69,6 +74,7 @@
                                         id="pages"
                                         title="Please enter the number of pages in your book."
                                         placeholder="No. of Pages"
+                                        autocomplete="off"
                                         required
                                         >
                                 </li>
@@ -80,7 +86,7 @@
                                     <input 
                                         type="radio" 
                                         name="read" 
-                                        id="has-read"
+                                        id="hasRead"
                                         value="read"
                                         >
                                     <label for="not-read">
@@ -89,9 +95,10 @@
                                     <input 
                                         type="radio" 
                                         name="read" 
-                                        id="not-read"
+                                        id="notRead"
                                         value="not-read"
                                         checked
+                                        required
                                         >
                                 </li>
                             </ul>
@@ -102,8 +109,8 @@
                 </form>
 
                 <section class="btns">
-                    <button type="reset" id="cancel">Cancel</button>
-                    <button type="submit" id="save">Save</button>
+                    <button type="reset" id="cancelBtn">Cancel</button>
+                    <button type="submit" id="saveBtn">Save</button>
                 </section>
             </dialog>
         </aside>

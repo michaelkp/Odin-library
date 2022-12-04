@@ -26,3 +26,10 @@ body, html {
     border: 1px solid red;
 }
 
+.card {
+    border: 1px solid red;
+}
+
+.card li {
+    list-style: none;
+}
