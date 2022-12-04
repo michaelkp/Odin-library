@@ -137,14 +137,32 @@ function makeCard(myLibrary) {
         cardContainer.appendChild(card)
 
         deleteCardBtn(card, cardContainer)
-        
+        readBtn(card, cardContainer)
+    
         if(Book.tag !== 'sample') {
             return
         } else {
             removeSampleBooks(myLibrary)
         }
+}
 
-
+function readBtn(card, cardContainer) {
+    const readBtn = document.createElement('button')
+        readBtn.textContent = 'Read'
+        card.appendChild(readBtn)
+    const readCheckmark = document.createElement('content')
+        readCheckmark.classList.add('readCheckmark')
+        readCheckmark.style.visibility = 'hidden'
+        card.appendChild(readCheckmark)
+    readBtn.addEventListener('pointerup', () => {
+        console.log('iooiiooi');
+        if(readCheckmark.style.visibility === 'visible'
+        ) {
+            readCheckmark.style.visibility = 'hidden'
+        } else {
+            readCheckmark.style.visibility = 'visible'
+        }
+    })
 }
 
 function deleteCardBtn(card, cardContainer) {

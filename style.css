@@ -6,6 +6,7 @@
 
 body, html {
     background-color: antiquewhite;
+    min-height: 100vh;
 }
 
 .container {
@@ -15,7 +16,7 @@ body, html {
 
 .main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     border: 1px solid red;
 }
 
@@ -26,10 +27,27 @@ body, html {
     border: 1px solid red;
 }
 
+.card-container {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
+}
+
 .card {
     border: 1px solid red;
 }
 
 .card li {
     list-style: none;
+}
+
+.card .deleteCardBtn {
+    
+}
+
+.card .readCheckmark::before {
+    content: '\2713';
+    color: lightgreen;
+    width: 20px;
+    height: 20px;
+    /* visibility: hidden; */
 }
