@@ -1,6 +1,8 @@
 'use strict'
 
 let myLibrary = [];
+let cardIdNumber = 0
+
 // let cardArray = [];
 
 // button to open dialog box with form
@@ -29,7 +31,7 @@ const saveBtn = document.getElementById('saveBtn')
         dialog.close('Save')
         openCheck(dialog)
         userInput(dialog.returnValue)
-        removeSampleCards(myLibrary)
+        removeSampleBooks(myLibrary)
 
     })
 
@@ -82,7 +84,6 @@ function Book(title, author, pages, cardId, tag) {
     // sampleCardId(newBook)
 
 }
-
 // sample books
 const theHobbit = new Book( 'The Hobbit', 'J.R.R. Tolkien', 250, cardId, 'sample')
 const theSandman = new Book('The Sandman', 'Niel Gaiman', 1200, cardId, 'sample')
@@ -118,8 +119,9 @@ function makeCard(myLibrary) {
     const cardLiAuthor = document.createElement('li')
     const cardLiPages = document.createElement('li')
 
-    let cardIdNumber = document.createElement('data-card-id')
-        cardIdNumber = newestBook.cardId
+    let cardNumber = document.createElement('data-card-id')
+        cardNumber.dataset.cardId = cardIdNumber++
+        card.textContent = cardIdNumber
         console.log(cardIdNumber + ' --cardid number');
         console.log('NEW TAG TEST -- ' + newestBook.tag);
         card.appendChild(cardHeader)
@@ -132,32 +134,45 @@ function makeCard(myLibrary) {
         cardList.appendChild(cardLiPages)
             cardLiPages.textContent = newestBook.pages
         cardContainer.appendChild(card)
-        deleteCardBtn(card)
+
+        deleteCardBtn(card, cardContainer)
+        
         if(Book.tag !== 'sample') {
             console.log('MMMMM -- ' + Book.tag)
             return
         } else {
-            removeSampleCards(myLibrary)
+            removeSampleBooks(myLibrary)
         }
 }
 
-function deleteCardBtn(card) {
+function deleteCardBtn(card, cardContainer) {
     console.log('ijpokpokokpk');
+    console.log(cardIdNumber);
+
     const deleteCardBtn = document.createElement('button')
         card.appendChild(deleteCardBtn)
-
-        deleteCardBtn.addEventListener('pointerup', () => {
-            removeCardDiv()
+        deleteCardBtn.textContent = 'Delete'
+        deleteCardBtn.addEventListener('pointerup', (e) => {
+            console.log(card);
+            cardContainer.removeChild(card)
+            // removeCardDiv(e, card)
         })
-}
+}     
 
-function removeCardDiv() {
-    let tempContainer = document.querySelector('.card-container')
-    let tempCard = document.querySelector('.card')
-    let removeCardDiv = tempContainer.removeChild(tempCard)
-}
 
-function removeSampleCards(myLibrary) {
+// function removeCardDiv(e, card) {
+//     e.preventDefault()
+//             e.target.closest('card')
+//     let removedCard = document.querySelector('data-card-id')
+//     let tempContainer = document.querySelector('.card-container')
+//     let tempCard = document.querySelector('.card')
+//     let removeCardDiv = tempContainer.remove(tempCard)
+//     console.log(card);
+    
+
+// }
+
+function removeSampleBooks(myLibrary) {
     // let filteredLibrary = myLibrary.filter(Book => Book.tag === 'sample').splice(Book)
     // console.log('DDDD -- ' + filteredLibrary.length);
     // console.log('TAG -- ' + Book.tag);
