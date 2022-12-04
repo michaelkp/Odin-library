@@ -8,6 +8,7 @@ const newBookBtn = document.getElementById('newBookBtn')
         console.log('button test')
         dialog.showModal()
         openCheck(dialog)
+        document.getElementById('newBook').reset()
     })
 
 // code for the dialog box and form to get user input
@@ -18,6 +19,7 @@ const cancelBtn = document.getElementById('cancelBtn')
     cancelBtn.addEventListener('pointerup', () => {
         console.log('Cancel pressed')
         dialog.close('Cancel')
+        document.getElementById('newBook').reset()
         openCheck(dialog)
     })
 
