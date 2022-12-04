@@ -32,7 +32,7 @@ const saveBtn = document.getElementById('saveBtn')
         openCheck(dialog)
         userInput(dialog.returnValue)
         removeSampleBooks(myLibrary)
-
+        checkForSampleBooks(myLibrary)
     })
 
 function openCheck(dialog) {
@@ -40,6 +40,12 @@ function openCheck(dialog) {
         console.log('Dialog open!')
     } else {
         console.log('Dialog closed.')
+    }
+}
+
+function checkForSampleBooks(myLibrary) {
+    if(myLibrary.length === 0) {
+        return
     }
 }
 
@@ -146,31 +152,14 @@ function makeCard(myLibrary) {
 }
 
 function deleteCardBtn(card, cardContainer) {
-    console.log('ijpokpokokpk');
-    console.log(cardIdNumber);
 
     const deleteCardBtn = document.createElement('button')
         card.appendChild(deleteCardBtn)
         deleteCardBtn.textContent = 'Delete'
         deleteCardBtn.addEventListener('pointerup', (e) => {
-            console.log(card);
             cardContainer.removeChild(card)
-            // removeCardDiv(e, card)
         })
 }     
-
-
-// function removeCardDiv(e, card) {
-//     e.preventDefault()
-//             e.target.closest('card')
-//     let removedCard = document.querySelector('data-card-id')
-//     let tempContainer = document.querySelector('.card-container')
-//     let tempCard = document.querySelector('.card')
-//     let removeCardDiv = tempContainer.remove(tempCard)
-//     console.log(card);
-    
-
-// }
 
 function removeSampleBooks(myLibrary) {
     // let filteredLibrary = myLibrary.filter(Book => Book.tag === 'sample').splice(Book)
@@ -180,9 +169,12 @@ function removeSampleBooks(myLibrary) {
     let tag = Book.tag
     console.log('TAG -- ' + tag);
     console.log(myLibrary.length);
-
+    
     myLibrary.forEach(Book => {
         console.log('kkkmkmkkm');
+        if(myLibrary.length === 0) {
+            return
+        }
         if(Book.tag === 'sample'){
             console.log('kpkpkpl');
             removeSampleCardDiv(myLibrary)
@@ -197,14 +189,18 @@ function removeSampleBooks(myLibrary) {
 function removeSampleCardDiv(myLibrary) {
     console.log('HHHHH')
     console.log(Book.tag);
+    const removedCards = document.getElementsByClassName('.card')
+    console.log(removedCards.length);
     // if(Book.tag === 'sample')  {
     // let tempContainer = document.querySelector('.card-container')
     // let tempCard = document.querySelector('.card')
     // let removeCardDiv = tempContainer.removeChild(tempCard)}
-
+    console.log(myLibrary.length);
     myLibrary.forEach(Book => {
         console.log('kkkmkmkkm');
-        if(Book.tag === 'sample'){
+        if(removedCards.length === 0) {
+            return
+        } else if(Book.tag === 'sample'){
             let tempContainer = document.querySelector('.card-container')
             let tempCard = document.querySelector('.card')
             let removeCardDiv = tempContainer.removeChild(tempCard)
