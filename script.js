@@ -55,7 +55,8 @@ function userInput(returnValue) {
                 author.value,
                 pages.value,
                 cardId++,
-                'newBook',
+                Book.tag,
+                Book.isRead
             )
             // newBook.description = description.value
             console.log(newBook instanceof Book);
@@ -72,23 +73,26 @@ const sampleCardId = (newBook) => {
     }
 } 
 
-function Book(title, author, pages, cardId, tag) {
+function Book(title, author, pages, cardId, tag, isRead) {
     this.title = title
     this.author = author
     this.pages = pages
     this.cardId = cardId
     this.tag = tag
+    this.isRead = isRead
     // this.description = description
     this.info = () => {
-        return `${this.title} by ${this.author}, ${this.pages} pages.  ID = ${cardId} tag ${tag}`
+        return `${this.title} by ${this.author}, ${this.pages} pages.  ID = ${cardId} tag ${tag} 
+        
+        READ: ${isRead}`
     }
     // sampleCardId(newBook)
 
 }
 // sample books
-const theHobbit = new Book( 'The Hobbit', 'J.R.R. Tolkien', 250, cardId, 'sample')
-const theSandman = new Book('The Sandman', 'Niel Gaiman', 1200, cardId, 'sample')
-const hamlet = new Book('Hamlet', 'William Shakespeare', 150, cardId, 'sample')
+const theHobbit = new Book( 'The Hobbit', 'J.R.R. Tolkien', 250, cardId, 'sample', false)
+const theSandman = new Book('The Sandman', 'Neil Gaiman', 1200, cardId, 'sample', true)
+const hamlet = new Book('Hamlet', 'William Shakespeare', 150, cardId, 'sample', false)
 
 
 addBookToLibrary(theHobbit)
@@ -106,11 +110,12 @@ function addBookToLibrary(newBook) {
     
 }
 
-function makeCard(myLibrary) {
+function makeCard(newBook) {
     sampleCardId(myLibrary)
 
     // display new book 
-    const newestBook = myLibrary
+    // const newestBook = myLibrary
+    console.log('NEW BOOK !!!!-- ' + newBook.info());
     const cardContainer = document.querySelector('.card-container')
     const card = document.createElement('div')
         card.className = 'card'
@@ -124,20 +129,20 @@ function makeCard(myLibrary) {
         cardNumber.dataset.cardId = cardIdNumber++
         card.textContent = cardIdNumber
         console.log(cardIdNumber + ' --cardid number');
-        console.log('NEW TAG TEST -- ' + newestBook.tag);
+        // console.log('NEW TAG TEST -- ' + newestBook.tag);
         card.appendChild(cardHeader)
-            cardHeader.textContent = newestBook.title
-            console.log(newestBook.title)
-            console.log(newestBook.cardId + ' --ID in makecard');
+            cardHeader.textContent = newBook.title
+            console.log(newBook.title)
+            console.log(newBook.cardId + ' --ID in makecard');
         card.appendChild(cardList)
         cardList.appendChild(cardLiAuthor)
-            cardLiAuthor.textContent = newestBook.author
+            cardLiAuthor.textContent = newBook.author
         cardList.appendChild(cardLiPages)
-            cardLiPages.textContent = newestBook.pages
+            cardLiPages.textContent = newBook.pages
         cardContainer.appendChild(card)
 
         deleteCardBtn(card, cardContainer)
-        readBtn(card, cardContainer)
+        readBtn(card, newBook)
     
         if(Book.tag !== 'sample') {
             return
@@ -146,21 +151,24 @@ function makeCard(myLibrary) {
         }
 }
 
-function readBtn(card, cardContainer) {
+function readBtn(card, newBook) {
     const readBtn = document.createElement('button')
         readBtn.textContent = 'Read'
         card.appendChild(readBtn)
+
     const readCheckmark = document.createElement('content')
         readCheckmark.classList.add('readCheckmark')
         readCheckmark.style.visibility = 'hidden'
         card.appendChild(readCheckmark)
+
     readBtn.addEventListener('pointerup', () => {
-        console.log('iooiiooi');
         if(readCheckmark.style.visibility === 'visible'
         ) {
             readCheckmark.style.visibility = 'hidden'
+            newBook.isRead = false
         } else {
             readCheckmark.style.visibility = 'visible'
+            newBook.isRead = true
         }
     })
 }
