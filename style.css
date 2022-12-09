@@ -6,48 +6,213 @@
 
 body, html {
     background-color: antiquewhite;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    background-color: aliceblue;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    /* grid-template-rows: .25fr 1fr; */
+    justify-items: center;
+    /* width: 80%; */
+    /* height: 100%; */
+
 }
 
 .main {
     display: grid;
-    grid-template-columns: 1fr;
-    border: 1px solid red;
+    grid-template-rows: 50px 50px 1fr;
+    width: 80%;
+    background-color: white;
+    min-width: 250px;
+    min-height: 100vh;
+    margin: 10px;
+    padding: 10px;
 }
 
-.sidebar {
+.main h2 {
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    outline: 1px solid green;
+}
+
+/* .sidebar {
     display: grid;
     grid-template-rows: 1fr 3fr;
     height: 100vh;
     border: 1px solid red;
-}
+} */
 
 .card-container {
     display: grid;
-    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-template-rows: repeat(auto-fit, 100px);
+    gap: 10px;
+    min-height: 100%;
+    min-width: 200px;
+
 }
 
 .card {
-    border: 1px solid red;
+    display: grid;
+    grid-template-rows: .25fr 1fr .25fr;
+    grid-template-areas: 
+        "card-header card-header"
+        "card-info card-info"
+        "card-footer card-footer"
+    ;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    min-height: 100px;
+    min-width: 200px;
+    position: relative;
+    outline: 2px solid midnightblue;
+
 }
 
-.card li {
-    list-style: none;
+.card-header {
+    grid-area: card-header;
+    min-width: 100%;
+    text-align: center;
 }
 
-.card .deleteCardBtn {
+.card-info {
+    grid-area: card-info;
+    display: grid;
+    grid-template-columns: 1fr .2fr;
+    height: 100%;
+}
+
+.card button {
+    width: 5em;
+}
+
+.card-btns {
+    display: grid;
+    grid-template-columns: 1fr .25fr .25fr;
+    grid-template-areas: 
+        ". card-btns-read card-btns-delete"
+    ;
+    gap: 5px;
+    align-content: center;
+    text-align: center;
+    position: relative;
+}
+.card-footer {
+    grid-area: card-footer;
+    grid-template-columns: repeat(1, 1fr) repeat(2, .25fr);
+    grid-template-areas: 
+        "checkmark card-btns-read card-btns-delete"
+    ;
+    display: grid;
+    width: 100%;
+
+}
+.card-btns-read {
+    grid-area: card-btns-read;
     
 }
 
-.card .readCheckmark::before {
+.card-btns-delete {
+    grid-area: card-btns-delete;
+}
+
+ 
+
+.card li {
+    list-style: none;
+    display: flex;
+    justify-items: center;
+    justify-content: flex-end;
+}
+
+.card li:first-child {
+    justify-content: flex-start;
+}
+
+.read-checkmark::before {
+    grid-area: checkmark;
     content: '\2713';
-    color: lightgreen;
-    width: 20px;
-    height: 20px;
-    /* visibility: hidden; */
+    color: green;
+}
+
+dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+    padding: 10px;
+    border: none;
+}
+
+dialog fieldset {
+    border-style: none;
+    display: flex;
+    justify-items: center;
+}
+
+fieldset label {
+    font-family: monospace;
+}
+
+fieldset li {
+    display: flex;
+    gap:5px;
+    flex-direction: column;
+    margin: 10px;
+    list-style: none;
+}
+
+fieldset input {
+    line-height: 1.2em;
+    padding: 10px;
+    margin-inline: 10px;
+    border: none;
+    border-radius: 10px;
+    outline: 2px solid lightgray;
+    display: flex;
+}
+
+/* hide arrows in the pages input */
+fieldset input[type="number"]::-webkit-inner-spin-button,
+fieldset input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+fieldset input:active, fieldset input:focus {
+    outline: 2px solid midnightblue;
+}
+
+fieldset input:required:valid {
+    outline: 2px solid lightgreen;
+    box-shadow: 0px 0px 10px 2px lightgreen;
+}
+
+fieldset input:required:invalid:not(:placeholder-shown) {
+    outline: 2px solid lightcoral;
+    box-shadow: 0px 0px 10px 2px lightcoral;
+    content: "Invalid!";
+}
+
+dialog .btns {
+    display: flex;
+    gap: 5px;
+}
+
+dialog button {
+    border-radius: 10px;
+    line-height: 2em;
+    flex: 1;
+    cursor: pointer;
+}
+
+dialog button input:invalid {
+    pointer-events: none;
 }

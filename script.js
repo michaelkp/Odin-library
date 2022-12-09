@@ -74,50 +74,63 @@ function makeCard(newBook) {
         card.className = 'card'
         
     const cardHeader = document.createElement('header')
+        cardHeader.className = 'card-header'
     const cardList = document.createElement('ul')
     const cardLiAuthor = document.createElement('li')
     const cardLiPages = document.createElement('li')
 
         card.appendChild(cardHeader)
-            cardHeader.textContent = newBook.title
+    const cardTitle = document.createElement('h3')
+        cardTitle.className = 'card-title'
+        cardHeader.appendChild(cardTitle)
+            cardTitle.textContent = newBook.title
 
         card.appendChild(cardList)
         cardList.appendChild(cardLiAuthor)
+            cardList.className = 'card-info'
             cardLiAuthor.textContent = newBook.author
         cardList.appendChild(cardLiPages)
             cardLiPages.textContent = newBook.pages
+
+    const cardFooter = document.createElement('footer')
+        cardFooter.className = 'card-footer'
+        card.appendChild(cardFooter)
         cardContainer.appendChild(card)
 
-        deleteCardBtn(card, cardContainer)
-        readBtn(card, newBook)
+        deleteCardBtn(card, cardContainer, cardFooter)
+        readBtn(card, newBook, cardFooter)
 }
 
-function readBtn(card, newBook) {
+function readBtn(card, newBook, cardFooter) {
     const readBtn = document.createElement('button')
+        readBtn.className = 'card-btns-read'
         readBtn.textContent = 'Read'
-        card.appendChild(readBtn)
+        cardFooter.appendChild(readBtn)
 
     const readCheckmark = document.createElement('content')
-        readCheckmark.classList.add('readCheckmark')
+        readCheckmark.className = 'read-checkmark'
         readCheckmark.style.visibility = 'hidden'
-        card.appendChild(readCheckmark)
+        cardFooter.appendChild(readCheckmark)
 
     readBtn.addEventListener('pointerup', () => {
         if(readCheckmark.style.visibility === 'visible'
         ) {
             readCheckmark.style.visibility = 'hidden'
+            card.style.outlineColor = 'midnightBlue'
             newBook.isRead = false
         } else {
             readCheckmark.style.visibility = 'visible'
+            card.style.outlineColor = 'green'
             newBook.isRead = true
         }
     })
 }
 
-function deleteCardBtn(card, cardContainer) {
+function deleteCardBtn(card, cardContainer, btnDiv) {
 
     const deleteCardBtn = document.createElement('button')
-        card.appendChild(deleteCardBtn)
+        deleteCardBtn.className = 'card-btns-delete'
+        btnDiv.appendChild(deleteCardBtn)
         deleteCardBtn.textContent = 'Delete'
     deleteCardBtn.addEventListener('pointerup', () => {
             cardContainer.removeChild(card)

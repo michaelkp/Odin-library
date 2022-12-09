@@ -11,108 +11,90 @@
 <body>
 
     <div class="container">
-        <header class="header">
-            <h1>Library</h1>
-        </header>
+        
         <main class="main">
+            <header class="header">
+                <h1>Library</h1>
+    
+                <button type="submit" id="newBookBtn">New Book</button>
+                <dialog id="newBookDialog">
+                    <form method="dialog" action="" id="newBook">
+                        <section>
+                            <fieldset>
+                                <legend>
+                                    Add a new book to your library!
+                                </legend>
+                                <ul>
+                                    <li>
+                                        <label for="title">
+                                            Title
+                                            <span aria-label="required">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="title" 
+                                            id="title"
+                                            title="Please enter the title of your book."
+                                            placeholder="Title"
+                                            minlength="3"
+                                            autocapitalize="words"
+                                            autocomplete="off"
+                                            autofocus
+                                            required
+                                            >
+                                    </li>
+                                    <li>
+                                        <label for="author">
+                                            Author
+                                            <span aria-label="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="author" 
+                                            id="author"
+                                            title="Please enter the author of your book."
+                                            placeholder="Author"
+                                            minlength="3"
+                                            autocapitalize="words"
+                                            autocomplete="off"
+                                            required
+                                            >
+                                    </li>
+                                    <li>
+                                        <label for="pages">
+                                            Pages
+                                            <span aria-label="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="number" 
+                                            name="pages" 
+                                            id="pages"
+                                            title="Please enter the number of pages in your book."
+                                            placeholder="No. of Pages"
+                                            minlength="1"
+                                            autocomplete="off"
+                                            required
+                                            >
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </section>
+                        <pre id="log"></pre>
+                        <section class="btns">
+                            <button type="reset" id="cancelBtn">Cancel</button>
+                            <button type="submit" id="saveBtn">Save</button>
+                        </section>
+                    </form>
+    
+                    
+                </dialog>
+            </header>
             <h2>Titles</h2>
             <div class="card-container">
                 
             </div>
         </main>
-        <aside class="sidebar">
-            <button type="submit" id="newBookBtn">New Book</button>
-            <dialog id="newBookDialog">
-                <form method="dialog" id="newBook">
-                    <section>
-                        <fieldset>
-                            <legend>
-                                Add a new book to your library!
-                            </legend>
-                            <ul>
-                                <li>
-                                    <label for="title">
-                                        Title
-                                        <span aria-label="required">*</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="title" 
-                                        id="title"
-                                        title="Please enter the title of your book."
-                                        placeholder="Title"
-                                        autocapitalize="words"
-                                        autocomplete="off"
-                                        autofocus
-                                        required
-                                        >
-                                </li>
-                                <li>
-                                    <label for="author">
-                                        Author
-                                        <span aria-label="required">*</span>
-                                    </label>
-                                    <input 
-                                        type="text" 
-                                        name="author" 
-                                        id="author"
-                                        title="Please enter the author of your book."
-                                        placeholder="Author"
-                                        autocapitalize="words"
-                                        autocomplete="off"
-                                        required
-                                        >
-                                </li>
-                                <li>
-                                    <label for="pages">
-                                        Pages
-                                        <span aria-label="required">*</span>
-                                    </label>
-                                    <input 
-                                        type="number" 
-                                        name="pages" 
-                                        id="pages"
-                                        title="Please enter the number of pages in your book."
-                                        placeholder="No. of Pages"
-                                        autocomplete="off"
-                                        required
-                                        >
-                                </li>
-                                <!-- <li>
-                                    <label for="read">
-                                        Read
-                                        <span aria-label="required">*</span>
-                                    </label>
-                                    <input 
-                                        type="radio" 
-                                        name="isRead" 
-                                        id="isRead"
-                                        value="true"
-                                        >
-                                    <label for="not-read">
-                                        Not Read
-                                    </label>
-                                    <input 
-                                        type="radio" 
-                                        name="isRead" 
-                                        id="isNotRead"
-                                        value="false"
-                                        checked
-                                        >
-                                </li> -->
-                            </ul>
-                        </fieldset>
-                    </section>
-                    <pre id="log"></pre>
-                    
-                </form>
-
-                <section class="btns">
-                    <button type="reset" id="cancelBtn">Cancel</button>
-                    <button type="submit" id="saveBtn">Save</button>
-                </section>
-            </dialog>
-        </aside>
+            
         <footer class="footer">
             <div class="footer-info">
                 
