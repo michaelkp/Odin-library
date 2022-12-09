@@ -21,15 +21,23 @@ const cancelBtn = document.getElementById('cancelBtn')
     })
 
 const saveBtn = document.getElementById('saveBtn')
-    saveBtn.addEventListener('pointerup', () => {
-        dialog.close('Save')
-        userInput(dialog.returnValue)
+    saveBtn.addEventListener('pointerup', (e) => {
+        e.preventDefault()
+        if(title.length < 3 && author.length < 3 && pages.length < 1) {
+            dialog.close('Save')
+            userInput(dialog.returnValue)
+            console.log(title.value);
+        } else {
+            return
+        }
+        
     })
 
 function userInput(returnValue) {
     if(!returnValue || returnValue === 'Cancel') {
         return
     } else if(returnValue === 'Save') {
+
         const newBook = new Book(
                 title.value,
                 author.value,
