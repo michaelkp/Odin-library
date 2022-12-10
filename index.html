@@ -16,9 +16,9 @@
             <header class="header">
                 <h1>Library</h1>
     
-                <button type="submit" id="newBookBtn">New Book</button>
+                <button type="button" id="newBookBtn">New Book</button>
                 <dialog id="newBookDialog">
-                    <form method="dialog" action="" id="newBook">
+                    <form method="dialog" action="post" id="newBook">
                         <section>
                             <fieldset>
                                 <legend>
@@ -35,7 +35,7 @@
                                             name="title" 
                                             id="title"
                                             title="Please enter the title of your book."
-                                            placeholder="Title"
+                                            placeholder="📕 Title"
                                             minlength="3"
                                             autocapitalize="words"
                                             autocomplete="off"
@@ -53,7 +53,7 @@
                                             name="author" 
                                             id="author"
                                             title="Please enter the author of your book."
-                                            placeholder="Author"
+                                            placeholder="📝 Author"
                                             minlength="3"
                                             autocapitalize="words"
                                             autocomplete="off"
@@ -70,7 +70,7 @@
                                             name="pages" 
                                             id="pages"
                                             title="Please enter the number of pages in your book."
-                                            placeholder="No. of Pages"
+                                            placeholder="🔢 No. of Pages"
                                             minlength="1"
                                             autocomplete="off"
                                             required
@@ -79,7 +79,6 @@
                                 </ul>
                             </fieldset>
                         </section>
-                        <pre id="log"></pre>
                         <section class="btns">
                             <button type="reset" id="cancelBtn">Cancel</button>
                             <button type="submit" id="saveBtn">Save</button>

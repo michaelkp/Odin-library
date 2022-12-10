@@ -23,10 +23,9 @@ const cancelBtn = document.getElementById('cancelBtn')
 const saveBtn = document.getElementById('saveBtn')
     saveBtn.addEventListener('pointerup', (e) => {
         e.preventDefault()
-        if(title.length < 3 && author.length < 3 && pages.length < 1) {
+        if(title.value !== '' && author.value !== '' && pages.value !== '') {
             dialog.close('Save')
             userInput(dialog.returnValue)
-            console.log(title.value);
         } else {
             return
         }
@@ -112,7 +111,9 @@ function makeCard(newBook) {
 function readBtn(card, newBook, cardFooter) {
     const readBtn = document.createElement('button')
         readBtn.className = 'card-btns-read'
-        readBtn.textContent = 'Read'
+        readBtn.textContent = '📕'
+        readBtn.setAttribute('title', 'Click to set status to "Read"')
+
         cardFooter.appendChild(readBtn)
 
     const readCheckmark = document.createElement('content')
@@ -124,10 +125,15 @@ function readBtn(card, newBook, cardFooter) {
         if(readCheckmark.style.visibility === 'visible'
         ) {
             readCheckmark.style.visibility = 'hidden'
+            readBtn.textContent = '📕'
+            readBtn.setAttribute('title', 'Delete')
             card.style.outlineColor = 'midnightBlue'
             newBook.isRead = false
         } else {
             readCheckmark.style.visibility = 'visible'
+            readBtn.textContent = '📖'
+            readBtn.setAttribute('title', 'Read')
+
             card.style.outlineColor = 'green'
             newBook.isRead = true
         }
@@ -139,7 +145,9 @@ function deleteCardBtn(card, cardContainer, btnDiv) {
     const deleteCardBtn = document.createElement('button')
         deleteCardBtn.className = 'card-btns-delete'
         btnDiv.appendChild(deleteCardBtn)
-        deleteCardBtn.textContent = 'Delete'
+        deleteCardBtn.textContent = '🗑️'
+        deleteCardBtn.setAttribute('title', 'Delete')
+
     deleteCardBtn.addEventListener('pointerup', () => {
             cardContainer.removeChild(card)
         })

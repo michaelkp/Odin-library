@@ -89,33 +89,25 @@ body, html {
 }
 
 .card button {
-    width: 5em;
+    width: 2em;
+    border: none;
+    background: none;
+    background-color: none;
 }
 
-.card-btns {
-    display: grid;
-    grid-template-columns: 1fr .25fr .25fr;
-    grid-template-areas: 
-        ". card-btns-read card-btns-delete"
-    ;
-    gap: 5px;
-    align-content: center;
-    text-align: center;
-    position: relative;
-}
 .card-footer {
+    display: grid;
     grid-area: card-footer;
-    grid-template-columns: repeat(1, 1fr) repeat(2, .25fr);
+    grid-template-columns: repeat(1, 1fr) repeat(2, 2em);
     grid-template-areas: 
         "checkmark card-btns-read card-btns-delete"
     ;
-    display: grid;
     width: 100%;
-
+    padding-inline-end: 10px;
+    gap: 5px;
 }
 .card-btns-read {
     grid-area: card-btns-read;
-    
 }
 
 .card-btns-delete {
