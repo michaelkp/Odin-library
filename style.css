@@ -5,18 +5,17 @@
 }
 
 body, html {
-    background-color: antiquewhite;
-    /* min-height: 100vh; */
-    background-color: aliceblue;
+    background-color: midnightblue;
+    height: 100vh;
 }
 
 .container {
     display: grid;
-    /* grid-template-rows: .25fr 1fr; */
     justify-items: center;
-    /* width: 80%; */
-    /* height: 100%; */
-
+    width: 80%;
+    max-width: 1000px;
+    height: 100vh;
+    margin: 0 auto;
 }
 
 .main {
@@ -26,8 +25,9 @@ body, html {
     background-color: white;
     min-width: 250px;
     min-height: 100vh;
-    margin: 10px;
     padding: 10px;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .main h2 {
@@ -38,15 +38,16 @@ body, html {
 .header {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    outline: 1px solid green;
 }
 
-/* .sidebar {
-    display: grid;
-    grid-template-rows: 1fr 3fr;
-    height: 100vh;
-    border: 1px solid red;
-} */
+.header button {
+    border-radius: 10px;
+    max-width: 250px;
+}
+
+.header h1 {
+    letter-spacing: 2px;
+}
 
 .card-container {
     display: grid;
@@ -72,6 +73,7 @@ body, html {
     min-width: 200px;
     position: relative;
     outline: 2px solid midnightblue;
+    word-wrap: break-word;
 
 }
 
@@ -79,11 +81,13 @@ body, html {
     grid-area: card-header;
     min-width: 100%;
     text-align: center;
+    border-bottom: 2px solid hotpink;
 }
 
 .card-info {
     grid-area: card-info;
     display: grid;
+    align-content: center;
     grid-template-columns: 1fr .2fr;
     height: 100%;
 }
@@ -138,9 +142,18 @@ dialog {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: aliceblue;
+    background-color: midnightblue;
+    color: white;
     padding: 10px;
     border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 10px white;
+    padding: 20px;
+}
+
+dialog::backdrop {
+    background-color: rgb(0,0,0, 0.2);
+    backdrop-filter: blur(2.5px);
 }
 
 dialog fieldset {
@@ -150,7 +163,7 @@ dialog fieldset {
 }
 
 fieldset label {
-    font-family: monospace;
+    font-family: 'Roboto Mono', monospace;
 }
 
 fieldset li {
@@ -175,8 +188,12 @@ fieldset input {
 fieldset input[type="number"]::-webkit-inner-spin-button,
 fieldset input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
-    -moz-appearance: textfield;
 }
+
+input[type="number"] {
+    appearance: textfield;
+}
+/* end input arrows */
 
 fieldset input:active, fieldset input:focus {
     outline: 2px solid midnightblue;
@@ -208,3 +225,4 @@ dialog button {
 dialog button input:invalid {
     pointer-events: none;
 }
+

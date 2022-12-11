@@ -28,8 +28,7 @@ const saveBtn = document.getElementById('saveBtn')
             userInput(dialog.returnValue)
         } else {
             return
-        }
-        
+        } 
     })
 
 function userInput(returnValue) {
@@ -126,7 +125,7 @@ function readBtn(card, newBook, cardFooter) {
         ) {
             readCheckmark.style.visibility = 'hidden'
             readBtn.textContent = '📕'
-            readBtn.setAttribute('title', 'Delete')
+            readBtn.setAttribute('title', 'Not Read')
             card.style.outlineColor = 'midnightBlue'
             newBook.isRead = false
         } else {
